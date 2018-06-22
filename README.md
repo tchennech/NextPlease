@@ -1,2 +1,2 @@
 # NextPlease
-魔塔
+仿贪吃蛇
