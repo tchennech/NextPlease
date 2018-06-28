@@ -21,6 +21,7 @@ def paint():
     screen.fill((0,0,0))
     bgPaint()
     snake.paint_Hero()
+    
 
 # 绘制背景
 def bgPaint():
