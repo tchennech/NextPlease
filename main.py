@@ -19,9 +19,16 @@ def collision():
 # 绘制函数
 def paint():
     screen.fill((0,0,0))
+    bgPaint()
     snake.paint_Hero()
-    pass
 
+# 绘制背景
+def bgPaint():
+    i = 0
+    for x, y in set.backgroundPos:
+        tempImg = pygame.image.load(set.background[i])
+        screen.blit(pygame.transform.scale(tempImg,(300,300)), (x,y))
+        i+=1
 
 # 各物体对象坐标变化
 def dynamic():
@@ -55,7 +62,7 @@ if __name__ == '__main__':
         # 绘制函数
         paint()
         # 延迟，  待替换
-        pygame.time.delay(10)
+        pygame.time.delay(20)
         # 限制帧数
         clock.tick(30)
         # 刷新

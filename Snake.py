@@ -1,13 +1,17 @@
 import pygame,random,math
 from pygame.locals import  *
+from setting import Setting
+set  = Setting()
 class Snake:
     num = 5
     r = 10
     degree = 0
     step = 1
     # 蛇身+头 横纵坐标
-    headX = random.randint(20, 760)
-    headY = random.randint(20, 760)
+    # headX = random.randint(20, 760)
+    # headY = random.randint(20, 760)
+    headX = set.originX
+    headY = set.originY
     bodyX = []
     bodyY = []
     bodyX.append(headX)
@@ -44,6 +48,11 @@ class Snake:
     # 获取蛇头坐标
     def getSnakeHead(self):
         return self.bodyX[0], self.bodyY[0]
+
+    # 获取蛇的相对于原点(200,200)的坐标位移
+    def getRelativeShift(self):
+        x, y = self.getSnakeHead()
+        return x - set.originX, y - set.originY
 
     # 移动
     def moveaction(self):
