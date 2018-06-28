@@ -9,9 +9,11 @@ class Setting:
         self.BGHEIGHT = 500
         self.originX = 200
         self.originY = 200
-        self.backgroundPos = [(-self.BGWIDTH,-self.BGHEIGHT),(-self.BGWIDTH, 0), (-self.BGWIDTH, self.BGHEIGHT),
-                              (0,-self.BGHEIGHT), (0, 0), (0, self.BGHEIGHT),
-                              (self.BGWIDTH, -self.BGHEIGHT), (self.BGWIDTH, 0),(self.BGWIDTH,self.BGHEIGHT)]
+        self.rx = 0
+        self.ry = 0
+        self.backgroundPos = [[-self.BGWIDTH,-self.BGHEIGHT],[-self.BGWIDTH, 0], [-self.BGWIDTH, self.BGHEIGHT],
+                              [0,-self.BGHEIGHT], [0, 0], [0, self.BGHEIGHT],
+                              [self.BGWIDTH, -self.BGHEIGHT], [self.BGWIDTH, 0],[self.BGWIDTH,self.BGHEIGHT]]
         for i in range(1,self.backgroundPages+1):
             self.background.append('img/grids'+str(i)+'.jpg')
         #self.BGWIDTH = pygame.image.load(self.background[0]).get_rect()[2]

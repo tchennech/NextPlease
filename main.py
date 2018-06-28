@@ -18,23 +18,33 @@ def collision():
 
 # 绘制函数
 def paint():
-    screen.fill((0,0,0))
     bgPaint()
     snake.paint_Hero()
-    
+
 
 # 绘制背景
 def bgPaint():
     i = 0
     for x, y in set.backgroundPos:
         tempImg = pygame.image.load(set.background[i])
+        print(x,y)
         screen.blit(pygame.transform.scale(tempImg,(set.BGWIDTH,set.BGHEIGHT)), (x,y))
         i+=1
 
 # 各物体对象坐标变化
 def dynamic():
-    snake.moveaction()
-    pass
+    global set
+    set.rx, set.ry= snake.moveaction()
+    backgroundmove()
+
+
+# 背景移动
+def backgroundmove():
+    global set
+    for i in range(set.backgroundPages):
+        set.backgroundPos[i][0]-= set.rx
+        set.backgroundPos[i][1]-= set.ry
+
 
 
 if __name__ == '__main__':
@@ -42,7 +52,7 @@ if __name__ == '__main__':
 
     pygame.display.set_caption('Snake')
     # 键盘重复监听
-    pygame.key.set_repeat(10, 5)
+    pygame.key.set_repeat(2, 10)
     # 音效 初始化
     pygame.mixer.init()
 
