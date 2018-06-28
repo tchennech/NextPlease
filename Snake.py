@@ -18,6 +18,8 @@ class Snake:
     bodyY = []
     bodyX.append(headX)
     bodyY.append(headY)
+    #延时时间
+    delaytime = 0
 
 
     def __init__(self,screen):
@@ -33,6 +35,7 @@ class Snake:
 
     # 加速功能，代填补
     def accelerate(self):
+        self.delaytime+=10
         pass
 
     # 转向功能
@@ -72,6 +75,7 @@ class Snake:
     # 绘制
     def paint_Hero(self):
         #self.moveaction()
+        pygame.time.delay(self.delaytime)
         for i in range(self.num):
             pygame.draw.circle(self.screen, (255, 255, 0), (self.bodyX[i], self.bodyY[i]), 5, 0)
 
