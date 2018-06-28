@@ -29,7 +29,13 @@ class Setting:
         for i in range(1, self.backgroundPages + 1):
             self.background.append('img/grids' + str(i) + '.jpg')
 
+        #封面
+        self.cover = pygame.image.load("img/cover.jpg")
+        self.backgroundWidth = self.cover.get_rect()[2]
+        self.backgroundHeight = self.cover.get_rect()[3]
+        self.pressImg = pygame.image.load('img/press.png')
+        self.leftImg = pygame.image.load('img/yellow.png')
+        self.rightImg = pygame.image.load('img/red.png')
+        self.imgWidth = self.pressImg.get_rect()[2]
 
-set = Setting()
-screen = pygame.display.set_mode((set.BGWIDTH, set.BGHEIGHT))
 clock = pygame.time.Clock()
