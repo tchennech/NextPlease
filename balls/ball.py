@@ -49,4 +49,4 @@ class Ball(object):
 
         # 返回判断结果
         # 判断小球与蛇的脑袋是否相撞
-        return (bx-sx)*(bx-sx) + (by-sy)*(by-sy)
+        return (bx-sx)*(bx-sx) + (by-sy)*(by-sy) < (br+sr)*(br+sr)

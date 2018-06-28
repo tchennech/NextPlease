@@ -6,14 +6,14 @@ class BasicBall(Ball):
     '''
     基本小球，没有特殊属性，被吃后蛇长度以及分数增加1
     '''
-    def __init__(self, screen):
+    def __init__(self, screen, radius):
         self.screen = screen
         self.pos = [random.randint(0, 600), random.randint(0, 800)]
-        super(BasicBall, self).__init__(self, screen)
+        self.radius = radius 
+        super(basicball, self).__init__(screen, self.radius)
         # 被吃后增加权重
         self.weight = 1
-        # 小球半径
-        self.radius = 5
+        
 
     def blitme(self):
         '''
