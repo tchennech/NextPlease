@@ -71,7 +71,7 @@ class Snake:
 
     # 绘制
     def paint_Hero(self):
-        self.moveaction()
+        #self.moveaction()
         for i in range(self.num):
             pygame.draw.circle(self.screen, (255, 255, 0), (self.bodyX[i], self.bodyY[i]), 5, 0)
 

@@ -13,14 +13,21 @@ class Setting:
         self.originY = 200
         self.rx = 0
         self.ry = 0
-        self.backgroundPos = [[-self.BGWIDTH,-self.BGHEIGHT],[-self.BGWIDTH, 0], [-self.BGWIDTH, self.BGHEIGHT],
-                              [0,-self.BGHEIGHT], [0, 0], [0, self.BGHEIGHT],
-                              [self.BGWIDTH, -self.BGHEIGHT], [self.BGWIDTH, 0],[self.BGWIDTH,self.BGHEIGHT]]
-        for i in range(1,self.backgroundPages+1):
-            self.background.append('img/grids'+str(i)+'.jpg')
-        #self.BGWIDTH = pygame.image.load(self.background[0]).get_rect()[2]
-        #self.BGHEIGHT = pygame.image.load(self.background[0]).get_rect()[3]
+        self.backgroundPos = [[-self.BGWIDTH, -self.BGHEIGHT], [-self.BGWIDTH, 0], [-self.BGWIDTH, self.BGHEIGHT],
+                              [0, -self.BGHEIGHT], [0, 0], [0, self.BGHEIGHT],
+                              [self.BGWIDTH, -self.BGHEIGHT], [self.BGWIDTH, 0], [self.BGWIDTH, self.BGHEIGHT]]
 
+        self.borderPos = [
+            [-self.BGWIDTH * 2, -self.BGHEIGHT * 2], [-self.BGWIDTH * 2, -self.BGWIDTH], [-self.BGWIDTH * 2, 0],
+            [-self.BGWIDTH * 2, self.BGHEIGHT], [-self.BGWIDTH * 2, self.BGHEIGHT * 2],
+            [-self.BGWIDTH, -self.BGWIDTH*2], [-self.BGWIDTH, self.BGWIDTH*2],
+            [0, -self.BGWIDTH * 2], [0, self.BGWIDTH * 2],
+            [self.BGWIDTH, -self.BGWIDTH*2], [self.BGWIDTH, self.BGWIDTH*2],
+            [self.BGWIDTH * 2, -self.BGHEIGHT * 2], [self.BGWIDTH * 2, -self.BGWIDTH], [self.BGWIDTH * 2, 0],
+            [self.BGWIDTH * 2, self.BGHEIGHT], [self.BGWIDTH * 2, self.BGHEIGHT * 2]]
+
+        for i in range(1, self.backgroundPages + 1):
+            self.background.append('img/grids' + str(i) + '.jpg')
 
 
 set = Setting()
