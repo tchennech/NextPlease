@@ -27,7 +27,7 @@ def bgPaint():
     i = 0
     for x, y in set.backgroundPos:
         tempImg = pygame.image.load(set.background[i])
-        screen.blit(pygame.transform.scale(tempImg,(300,300)), (x,y))
+        screen.blit(pygame.transform.scale(tempImg,(set.BGWIDTH,set.BGHEIGHT)), (x,y))
         i+=1
 
 # 各物体对象坐标变化
@@ -38,10 +38,10 @@ def dynamic():
 
 if __name__ == '__main__':
     pygame.init()
-    # 标题
+
     pygame.display.set_caption('Snake')
     # 键盘重复监听
-    pygame.key.set_repeat(20, 5)
+    pygame.key.set_repeat(10, 5)
     # 音效 初始化
     pygame.mixer.init()
 
