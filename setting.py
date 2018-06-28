@@ -5,8 +5,10 @@ class Setting:
     def __init__(self):
         self.background = []
         self.backgroundPages = 9
+        # 窗口大小
         self.BGWIDTH = 500
         self.BGHEIGHT = 500
+        # 蛇头原始坐标
         self.originX = 200
         self.originY = 200
         self.rx = 0

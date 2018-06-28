@@ -2,6 +2,7 @@ import pygame, random, sys
 from pygame.locals import *
 from setting import *
 from Snake import Snake
+
 # 全局变量
 snake = Snake(screen)
 
