@@ -195,7 +195,8 @@ def main():
         elif state == finish:
             finishs()
         elif state != stops:
-            CountClock()
+            if state == limit:
+                CountClock()
             # 碰撞函数
             collision()
             # 各物体对象坐标变化

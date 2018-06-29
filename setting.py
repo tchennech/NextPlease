@@ -5,12 +5,13 @@ class Setting:
     def __init__(self):
         self.background = []
         self.backgroundPages = 9
+        self.cover = pygame.image.load("img/cover.jpg")
         # 窗口大小
-        self.BGWIDTH = 500
-        self.BGHEIGHT = 500
+        self.BGWIDTH = self.cover.get_rect()[2]
+        self.BGHEIGHT = self.cover.get_rect()[3]
         # 蛇头原始坐标
-        self.originX = 200
-        self.originY = 200
+        self.originX = self.cover.get_rect()[2]//2
+        self.originY = self.cover.get_rect()[3]//2
         self.rx = 0
         self.ry = 0
         self.backgroundPos = [[-self.BGWIDTH, -self.BGHEIGHT], [-self.BGWIDTH, 0], [-self.BGWIDTH, self.BGHEIGHT],
@@ -30,7 +31,6 @@ class Setting:
             self.background.append('img/grids' + str(i) + '.jpg')
 
         #封面
-        self.cover = pygame.image.load("img/cover.jpg")
         self.backgroundWidth = self.cover.get_rect()[2]
         self.backgroundHeight = self.cover.get_rect()[3]
         self.pressImg = pygame.image.load('img/press.png')
