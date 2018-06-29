@@ -135,6 +135,17 @@ def finishs():
     stopStr = ft.render(str(score), True, (0, 0, 0))
     screen.blit(stopStr, (set.backgroundWidth - 105, 60))
 
+# 游戏结束后参数重置
+def argsInit():
+    global state, starts, snake, set, enermylist
+    state = starts
+    set.setInit()
+    snake = MySnake(screen, set)
+    enermylist.clear()
+    for i in range(5):
+        enermylist.append(OtherSnake(screen))
+
+
 
 def stop():
     screen.blit(set.cover, (0, 0))
@@ -142,6 +153,7 @@ def stop():
     ft = pygame.font.Font('font/fonts.ttf', 35)
     stopStr = ft.render("再次点击继续", True, (0, 0, 0))
     screen.blit(stopStr, (set.backgroundWidth // 2 - 105, set.backgroundHeight - 80))
+
 
 
 #初始界面
@@ -183,6 +195,7 @@ def action():
                         if mouseX > rightX and mouseX < rightX + 200:
                             state = limit
             elif state == finish:
+                argsInit()
                 state = starts
             elif state == stops:
                 state = stopTemp

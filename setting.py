@@ -4,6 +4,11 @@ import pygame
 class Setting:
     backgroundStore = []
     borderImg = pygame.image.load('img/border.jpg')
+
+    # 参数重置
+    def setInit(self):
+        self.__init__()
+
     def __init__(self):
         self.background = []
         self.backgroundPages = 9
