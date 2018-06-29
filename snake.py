@@ -14,7 +14,7 @@ class Snake:
         for i in range(1, self.num):
             self.bodyX.append(self.bodyX[i - 1] + int(2 * self.r * math.cos(random.randint(0, 45))))
             self.bodyY.append(self.bodyY[i - 1] + int(2 * self.r * math.sin(random.randint(0, 45))))
-            print(self.bodyX[i - 1], self.bodyY[i - 1])
+            #print(self.bodyX[i - 1], self.bodyY[i - 1])
 
     @abc.abstractmethod
     def moveaction(self,set):

@@ -37,7 +37,7 @@ timeIndex = 50
 
 # 函数
 
-#初始化
+#初始化各个参数，  添加图片到内存中
 def initGame():
     pygame.init()
     pygame.display.set_caption("贪吃蛇大作战")
@@ -62,6 +62,7 @@ def keyListen(event):
 
 # 碰撞函数
 def collision():
+
     pass
 
 # 绘制函数
@@ -86,16 +87,24 @@ def timePaint():
 def bgPaint():
     global set
     i = 0
+    '''
     for x, y in set.backgroundPos:
         tempImg = pygame.image.load(set.background[i])
         screen.blit(pygame.transform.scale(tempImg,(set.BGWIDTH,set.BGHEIGHT)), (x,y))
         i+=1
+    '''
+    for x, y in set.backgroundPos:
+        screen.blit(pygame.transform.scale(Setting.backgroundStore[i], (set.BGWIDTH, set.BGHEIGHT)), (x, y))
 
 def borderPaint():
     global set
+    '''
     for x, y in set.borderPos:
         tempImg = pygame.image.load('img/border.jpg')
         screen.blit(pygame.transform.scale(tempImg, (set.BGWIDTH, set.BGHEIGHT)), (x, y))
+    '''
+    for x, y in set.borderPos:
+        screen.blit(pygame.transform.scale(Setting.borderImg, (set.BGWIDTH, set.BGHEIGHT)),(x, y))
 
 # 各物体对象坐标变化
 def dynamic():
@@ -122,12 +131,16 @@ def finishs():
     ft = pygame.font.Font('font/fonts.ttf', 30)
     stopStr = ft.render(str(score), True, (0, 0, 0))
     screen.blit(stopStr, (set.backgroundWidth - 105, 60))
+
+
 def stop():
     screen.blit(set.cover, (0, 0))
     pygame.font.init()
     ft = pygame.font.Font('font/fonts.ttf', 35)
     stopStr = ft.render("再次点击继续", True, (0, 0, 0))
     screen.blit(stopStr, (set.backgroundWidth // 2 - 105, set.backgroundHeight - 80))
+
+
 #初始界面
 def start():
     screen.blit(set.cover, (0, 0))
@@ -202,6 +215,8 @@ def main():
             # 各物体对象坐标变化
             dynamic()
             paint()
+            print('1111111')
+            print('2222')
             #延时
             #pygame.time.delay(15)
             # 限制帧数

@@ -2,13 +2,17 @@ import pygame
 
 
 class Setting:
+    backgroundStore = []
+    borderImg = pygame.image.load('img/border.jpg')
     def __init__(self):
         self.background = []
         self.backgroundPages = 9
         self.cover = pygame.image.load("img/cover.jpg")
         # 窗口大小
-        self.BGWIDTH = self.cover.get_rect()[2]
-        self.BGHEIGHT = self.cover.get_rect()[3]
+        #self.BGWIDTH = self.cover.get_rect()[2]
+        #self.BGHEIGHT = self.cover.get_rect()[3]
+        self.BGWIDTH = 500
+        self.BGHEIGHT= 500
         # 蛇头原始坐标
         self.originX = self.cover.get_rect()[2]//2
         self.originY = self.cover.get_rect()[3]//2
@@ -29,6 +33,8 @@ class Setting:
 
         for i in range(1, self.backgroundPages + 1):
             self.background.append('img/grids' + str(i) + '.jpg')
+            Setting.backgroundStore.append(pygame.image.load('img/grids' + str(i) + '.jpg'))
+
 
         #封面
         self.backgroundWidth = self.cover.get_rect()[2]

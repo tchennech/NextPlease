@@ -39,8 +39,10 @@ class OtherSnake(Snake):
         #random_x = 2 * self.r * math.cos(math.radians(random.randint(-180, 180)))
         #random_y = 2 * self.r * math.sin(math.radians(random.randint(-180, 180)))
         #print(set.directX,set.directY)
-        print('snake%d %d'%(self.bodyX[0],self.bodyY[0]))
-        print(set.backgroundPos[set.backgroundPages-1][0]+set.BGWIDTH, set.backgroundPos[set.backgroundPages - 1][1] + set.BGHEIGHT)
+
+        #print('snake%d %d'%(self.bodyX[0],self.bodyY[0]))
+        #print(set.backgroundPos[set.backgroundPages-1][0]+set.BGWIDTH, set.backgroundPos[set.backgroundPages - 1][1] + set.BGHEIGHT)
+
         if self.bodyX[0] + self.moveX < set.backgroundPos[0][0] and self.moveX < 0:
             self.moveX = - self.moveX
         if self.bodyX[0] + self.moveX > set.backgroundPos[set.backgroundPages - 1][0] + set.BGWIDTH and self.moveX >0:
