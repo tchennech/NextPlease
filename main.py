@@ -1,7 +1,7 @@
 import pygame, random, sys
 from pygame.locals import *
 from setting import *
-from Snake import Snake
+from mySnake import MySnake
 from enermy import OtherSnake
 # 全局变量
 enermylist = []
@@ -10,7 +10,7 @@ set = Setting()
 #屏幕
 screen = pygame.display.set_mode((set.backgroundWidth,set.backgroundHeight),0,32)
 #初始化蛇
-snake = Snake(screen)
+snake = MySnake(screen,set)
 #设置状态
 state = 0
 starts = 0
@@ -68,7 +68,7 @@ def collision():
 def paint():
     bgPaint()
     borderPaint()
-    snake.paint_Hero()
+    snake.paint()
     if state == limit:
         timePaint()
     for i in enermylist:
@@ -103,7 +103,7 @@ def dynamic():
     set.rx, set.ry= snake.moveaction()
     backgroundmove()
     for i in enermylist:
-        i.moveaction()
+        i.moveaction(set)
 
 
 # 背景(含边界黑幕)移动
