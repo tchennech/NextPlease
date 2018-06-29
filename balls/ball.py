@@ -5,6 +5,10 @@ class Ball(object):
     '''
     这是游戏内被贪吃蛇吃的球的基类
     '''
+    BASIC = 1
+    DOUBLEWFUC = 2
+    BUFFER = 3
+
     def __init__(self, screen, radius):
         '''
         初始化基类球 
@@ -15,8 +19,9 @@ class Ball(object):
         radius: 是
         '''
         self.screen = screen
-        self.pos
         self.radius = radius
+        self.pos = [random.randint(-set.BGWIDTH + self.radius, 2 * set.BGWIDTH - self.radius),\
+        random.randint(-set.BGHEIGHT + self.radius, 2 * set.BGHEIGHT - self.radius)]
     
     @abc.abstractmethod
     def blitme(self):
@@ -37,8 +42,8 @@ class Ball(object):
         判断小球是否被蛇吃掉
         '''
         # 蛇的位置
-        sx = snake.headX
-        sy = snake.headY
+        sx = snake.bodyX[0]
+        sy = snake.bodyY[0]
         # 蛇脑袋的半径
         sr = snake.r
 

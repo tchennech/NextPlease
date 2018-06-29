@@ -1,15 +1,17 @@
 from ball import Ball
 import pygame
 import random
+from setting import Setting
+
+set = Setting()
 
 class BasicBall(Ball):
     '''
     基本小球，没有特殊属性，被吃后蛇长度以及分数增加1
     '''
-    def __init__(self, screen, radius):
+    def __init__(self, screen):
         self.screen = screen
-        self.pos = [random.randint(0, 600), random.randint(0, 800)]
-        self.radius = radius 
+        self.radius = 10
         super(basicball, self).__init__(screen, self.radius)
         # 被吃后增加权重
         self.weight = 1
@@ -27,8 +29,8 @@ class BasicBall(Ball):
 
     def byEat(self):
         '''
-        小球被吃后，蛇身体增加值以及分数增加值
+        小球被吃后，效果的代表值
         Return:
-               返回分数以及小球身体增加的值
+               返回效果值
         '''
-        return self.weight
+        return Ball.BASIC
