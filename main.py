@@ -18,6 +18,7 @@ infinity = 1
 limit = 2
 stops = 3
 stopTemp = -1
+finish = 4
 #按钮字
 leftWord, rightWord = '无尽模式', '限时模式'
 
@@ -28,6 +29,8 @@ leftX = set.backgroundWidth//2-20-set.imgWidth
 rightX = set.backgroundWidth//2+30
 height = set.backgroundHeight-90
 
+#分数
+score = 0
 
 # 函数
 
@@ -92,6 +95,13 @@ def backgroundmove():
     for i in range(len(set.borderPos)):
         set.borderPos[i][0]-=set.rx
         set.borderPos[i][1]-=set.ry
+
+def finishs():
+    screen.blit(set.gameover, (0, 0))
+    pygame.font.init()
+    ft = pygame.font.Font('font/fonts.ttf', 30)
+    stopStr = ft.render(str(score), True, (0, 0, 0))
+    screen.blit(stopStr, (set.backgroundWidth - 105, 60))
 def stop():
     screen.blit(set.cover, (0, 0))
     pygame.font.init()
@@ -136,6 +146,8 @@ def action():
                             state = infinity
                         if mouseX > rightX and mouseX < rightX + 200:
                             state = limit
+            elif state == finish:
+                state = starts
             elif state == stops:
                 state = stopTemp
             else:
@@ -158,6 +170,10 @@ def main():
     while True:
         if state == starts:
             start()
+        elif state == stops:
+            stop()
+        elif state == finish:
+            finishs()
         elif state != stops:
             # 碰撞函数
             collision()
@@ -169,8 +185,6 @@ def main():
             # 限制帧数
             clock.tick(60)
             # 刷新
-        else:
-            stop()
         action()
         pygame.display.update()
 

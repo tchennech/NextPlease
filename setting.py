@@ -37,5 +37,7 @@ class Setting:
         self.leftImg = pygame.image.load('img/yellow.png')
         self.rightImg = pygame.image.load('img/red.png')
         self.imgWidth = self.pressImg.get_rect()[2]
+        #游戏结束
+        self.gameover = pygame.image.load('img/gameover.jpg')
 
 clock = pygame.time.Clock()
