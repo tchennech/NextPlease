@@ -32,6 +32,9 @@ height = set.backgroundHeight-90
 #分数
 score = 0
 
+#时间
+timeIndex = 50
+
 # 函数
 
 #初始化
@@ -46,6 +49,13 @@ def initGame():
     for i in range(5):
         enermylist.append(OtherSnake(screen))
 
+def CountClock():
+    global timeIndex, state
+    timeIndex -= 1
+    if timeIndex == 0:
+        state = finish
+        timeIndex = 50
+
 #键盘监听
 def keyListen(event):
     snake.turn(event)
@@ -59,8 +69,18 @@ def paint():
     bgPaint()
     borderPaint()
     snake.paint_Hero()
+    if state == limit:
+        timePaint()
     for i in enermylist:
         i.paint()
+
+def timePaint():
+    pygame.font.init()
+    ft = pygame.font.Font('font/fonts.ttf', 25)
+    timeStr = ft.render('倒计时：%d'%timeIndex, True, (75, 200, 200))
+    screen.blit(timeStr, (30, 20))
+
+
 
 # 绘制背景
 def bgPaint():
@@ -175,6 +195,7 @@ def main():
         elif state == finish:
             finishs()
         elif state != stops:
+            CountClock()
             # 碰撞函数
             collision()
             # 各物体对象坐标变化
