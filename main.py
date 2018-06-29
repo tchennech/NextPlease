@@ -3,6 +3,7 @@ from pygame.locals import *
 from setting import *
 from mySnake import MySnake
 from enermy import OtherSnake
+from attribute import Attribute
 # 全局变量
 enermylist = []
 #设置
@@ -11,6 +12,8 @@ set = Setting()
 screen = pygame.display.set_mode((set.backgroundWidth,set.backgroundHeight),0,32)
 #初始化蛇
 snake = MySnake(screen,set)
+# 分数栏
+attr =  Attribute(screen)
 #设置状态
 state = 0
 starts = 0
@@ -73,6 +76,7 @@ def paint():
     bgPaint()
     borderPaint()
     snake.paint()
+    attr.paintattribute()
     if state == limit:
         timePaint()
     for i in enermylist:

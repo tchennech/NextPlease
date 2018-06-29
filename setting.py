@@ -52,5 +52,8 @@ class Setting:
 
         self.yellowCir = pygame.image.load("img/circle02.png")
 
+        # 分数栏
+        self.titleImage = pygame.image.load('img/title.png')
+
 
 clock = pygame.time.Clock()
