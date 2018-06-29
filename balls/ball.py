@@ -1,5 +1,6 @@
 import abc
 import random
+from setting import Setting
 
 class Ball(object):
     '''
@@ -8,6 +9,8 @@ class Ball(object):
     BASIC = 1
     DOUBLEWFUC = 2
     BUFFER = 3
+
+    set = Setting()
 
     def __init__(self, screen, radius):
         '''
@@ -18,6 +21,7 @@ class Ball(object):
         pos: 是一个包含两个int值的list 例如[1,2]，表示球在屏幕位置，随机生成
         radius: 是
         '''
+        global set
         self.screen = screen
         self.radius = radius
         self.pos = [random.randint(-set.BGWIDTH + self.radius, 2 * set.BGWIDTH - self.radius),\
@@ -28,7 +32,7 @@ class Ball(object):
         '''
         在屏幕中绘制自己图像
         '''
-        pass
+
 
     @abc.abstractmethod
     def byEat(self):
@@ -37,21 +41,15 @@ class Ball(object):
         '''
         pass
 
-    def isEated(self, snake):
+    def isEaten(self):
         '''
         判断小球是否被蛇吃掉
         '''
-        # 蛇的位置
-        sx = snake.bodyX[0]
-        sy = snake.bodyY[0]
-        # 蛇脑袋的半径
-        sr = snake.r
-
-        # 小球的位置
-        bx = self.pos[0]
-        by = self.pos[1]
-        br = self.radius
+        iseaten = False
+        if self.pos[0] > -30 and self.pos[0] < 30:
+            if self.pos[1] > -30 and self.pos[1] < 30:
+                iseaten = True
 
         # 返回判断结果
         # 判断小球与蛇的脑袋是否相撞
-        return (bx-sx)*(bx-sx) + (by-sy)*(by-sy) < (br+sr)*(br+sr)
+        return iseaten

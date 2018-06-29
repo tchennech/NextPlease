@@ -40,4 +40,11 @@ class Setting:
         #游戏结束
         self.gameover = pygame.image.load('img/gameover.jpg')
 
+        self.redCir = pygame.image.load("img/circle00.png")
+
+        self.shieldImg = "img/shield.png"
+
+        self.yellowCir = pygame.image.load("img/circle02.png")
+
+
 clock = pygame.time.Clock()

@@ -1,7 +1,9 @@
 import pygame,random,math
 from pygame.locals import  *
 from setting import Setting
-set  = Setting()
+set = Setting()
+
+
 class Snake:
     num = 8
     r = 10
@@ -28,7 +30,7 @@ class Snake:
         for i in range(1,self.num ):
             self.bodyX.append(self.bodyX[i-1] + int(2 * self.r * math.cos(random.randint(0, 45))))
             self.bodyY.append(self.bodyY[i-1] + int(2 * self.r * math.sin(random.randint(0, 45))))
-            print(self.bodyX[i-1], self.bodyY[i-1])
+            # print(self.bodyX[i-1], self.bodyY[i-1])
 
     def get_body(self):
         return self.bodyX,self.bodyY
@@ -77,7 +79,8 @@ class Snake:
         #self.moveaction()
         pygame.time.delay(self.delaytime)
         for i in range(self.num):
-            pygame.draw.circle(self.screen, (255, 255, 0), (self.bodyX[i], self.bodyY[i]), 5, 0)
+            self.screen.blit(set.yellowCir, (self.bodyX[i], self.bodyY[i]))
+            # pygame.draw.circle(self.screen, (255, 255, 0), (self.bodyX[i], self.bodyY[i]), 5, 0)
 
 
 

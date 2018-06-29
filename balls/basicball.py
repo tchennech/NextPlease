@@ -15,16 +15,18 @@ class BasicBall(Ball):
         super(basicball, self).__init__(screen, self.radius)
         # 被吃后增加权重
         self.weight = 1
+        self.R = random.randint(50, 150)
+        self.G = random.randint(50, 150)
+        self.B = random.randint(50, 150)
         
 
-    def blitme(self):
+    def blitme(self, x, y):
         '''
         绘制自己，最基本的小球，圆形，随机颜色，填充
         '''
-        R = random.randint(50, 150)
-        G = random.randint(50, 150)
-        B = random.randint(50, 150)
-        pygame.draw.circle(self.screen, (R, G, B), \
+        self.pos[0] -= x
+        self.pos[1] -= y
+        pygame.draw.circle(self.screen, (self.R, self.G, self.B), \
         (self.pos[0], self.pos[1]), self.radius, 0)
 
     def byEat(self):
