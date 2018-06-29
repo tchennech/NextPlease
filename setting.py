@@ -11,8 +11,8 @@ class Setting:
         # 窗口大小
         #self.BGWIDTH = self.cover.get_rect()[2]
         #self.BGHEIGHT = self.cover.get_rect()[3]
-        self.BGWIDTH = 500
-        self.BGHEIGHT= 500
+        self.BGWIDTH = self.cover.get_rect()[2]
+        self.BGHEIGHT= self.cover.get_rect()[3]
         # 蛇头原始坐标
         self.originX = self.cover.get_rect()[2]//2
         self.originY = self.cover.get_rect()[3]//2
