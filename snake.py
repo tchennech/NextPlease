@@ -30,5 +30,5 @@ class Snake:
         pass
 
     @abc.abstractmethod
-    def hit(self,set):
+    def isHit(self,set):
         pass

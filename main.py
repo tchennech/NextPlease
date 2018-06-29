@@ -62,7 +62,10 @@ def keyListen(event):
 
 # 碰撞函数
 def collision():
-
+    global set, snake, state, finish
+    # 判断蛇是否碰到边界
+    if snake.isHit(set):
+        state = finish
     pass
 
 # 绘制函数
@@ -108,7 +111,7 @@ def borderPaint():
 
 # 各物体对象坐标变化
 def dynamic():
-    global set
+    global set, state
     set.rx, set.ry= snake.moveaction()
     backgroundmove()
     for i in enermylist:
@@ -215,8 +218,6 @@ def main():
             # 各物体对象坐标变化
             dynamic()
             paint()
-            print('1111111')
-            print('2222')
             #延时
             #pygame.time.delay(15)
             # 限制帧数
