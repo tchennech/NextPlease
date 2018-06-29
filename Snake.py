@@ -3,10 +3,12 @@ from pygame.locals import  *
 from setting import Setting
 set  = Setting()
 class Snake:
-    num = 5
+    num = 8
     r = 10
     degree = 0
     step = 1
+    # 移动倍率
+    power = 2
     # 蛇身+头 横纵坐标
     # headX = random.randint(20, 760)
     # headY = random.randint(20, 760)
@@ -16,6 +18,8 @@ class Snake:
     bodyY = []
     bodyX.append(headX)
     bodyY.append(headY)
+    #延时时间
+    delaytime = 0
 
 
     def __init__(self,screen):
@@ -31,6 +35,7 @@ class Snake:
 
     # 加速功能，代填补
     def accelerate(self):
+        self.delaytime+=10
         pass
 
     # 转向功能
@@ -49,22 +54,28 @@ class Snake:
     def getSnakeHead(self):
         return self.bodyX[0], self.bodyY[0]
 
-    # 获取蛇的相对于原点(200,200)的坐标位移
-    def getRelativeShift(self):
-        x, y = self.getSnakeHead()
-        return x - set.originX, y - set.originY
+
 
     # 移动
     def moveaction(self):
+        # for i in range(1,self.num):
+        #     self.bodyX[self.num-i]=self.bodyX[self.num-i-1]
+        #     self.bodyY[self.num-i]=self.bodyY[self.num-i-1]
+        # self.bodyX[0] = int(self.bodyX[0] + self.power * self.r*math.cos(math.radians(self.degree)))
+        # self.bodyY[0] = int(self.bodyY[0] + self.power * self.r * math.sin(math.radians(self.degree)))
+        # return self.power * self.r*math.cos(math.radians(self.degree)), \
+        #        self.power * self.r*math.sin(math.radians(self.degree))
+        rx = int(self.power * self.r*math.cos(math.radians(self.degree)))
+        ry = int(self.power * self.r*math.sin(math.radians(self.degree)))
         for i in range(1,self.num):
-            self.bodyX[self.num-i]=self.bodyX[self.num-i-1]
-            self.bodyY[self.num-i]=self.bodyY[self.num-i-1]
-        self.bodyX[0] = int(self.bodyX[0] + 2 * self.r*math.cos(math.radians(self.degree)))
-        self.bodyY[0] = int(self.bodyY[0] + 2 * self.r * math.sin(math.radians(self.degree)))
+            self.bodyX[self.num - i] = self.bodyX[self.num - i - 1] - rx
+            self.bodyY[self.num - i] = self.bodyY[self.num - i - 1] - ry
+        return rx, ry
 
     # 绘制
     def paint_Hero(self):
-        self.moveaction()
+        #self.moveaction()
+        pygame.time.delay(self.delaytime)
         for i in range(self.num):
             pygame.draw.circle(self.screen, (255, 255, 0), (self.bodyX[i], self.bodyY[i]), 5, 0)
 
