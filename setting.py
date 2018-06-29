@@ -4,6 +4,25 @@ import pygame
 class Setting:
     backgroundStore = []
     borderImg = pygame.image.load('img/border.jpg')
+    # 封面
+    cover = pygame.image.load("img/cover.jpg")
+    backgroundWidth = cover.get_rect()[2]
+    backgroundHeight = cover.get_rect()[3]
+    pressImg = pygame.image.load('img/press.png')
+    leftImg = pygame.image.load('img/yellow.png')
+    rightImg = pygame.image.load('img/red.png')
+    imgWidth = pressImg.get_rect()[2]
+    # 游戏结束
+    gameover = pygame.image.load('img/gameover.jpg')
+
+    redCir = pygame.image.load("img/circle00.png")
+
+    shieldImg = "img/shield.png"
+
+    yellowCir = pygame.image.load("img/circle02.png")
+
+    # 分数栏
+    titleImage = pygame.image.load('img/title.png')
 
     # 参数重置
     def setInit(self):
@@ -12,7 +31,6 @@ class Setting:
     def __init__(self):
         self.background = []
         self.backgroundPages = 9
-        self.cover = pygame.image.load("img/cover.jpg")
         # 窗口大小
         #self.BGWIDTH = self.cover.get_rect()[2]
         #self.BGHEIGHT = self.cover.get_rect()[3]
@@ -39,26 +57,6 @@ class Setting:
         for i in range(1, self.backgroundPages + 1):
             self.background.append('img/grids' + str(i) + '.jpg')
             Setting.backgroundStore.append(pygame.image.load('img/grids' + str(i) + '.jpg'))
-
-
-        #封面
-        self.backgroundWidth = self.cover.get_rect()[2]
-        self.backgroundHeight = self.cover.get_rect()[3]
-        self.pressImg = pygame.image.load('img/press.png')
-        self.leftImg = pygame.image.load('img/yellow.png')
-        self.rightImg = pygame.image.load('img/red.png')
-        self.imgWidth = self.pressImg.get_rect()[2]
-        #游戏结束
-        self.gameover = pygame.image.load('img/gameover.jpg')
-
-        self.redCir = pygame.image.load("img/circle00.png")
-
-        self.shieldImg = "img/shield.png"
-
-        self.yellowCir = pygame.image.load("img/circle02.png")
-
-        # 分数栏
-        self.titleImage = pygame.image.load('img/title.png')
 
 
 clock = pygame.time.Clock()

@@ -1,4 +1,4 @@
-from ball import Ball
+from balls.ball import Ball
 import pygame
 import random
 from setting import Setting
@@ -12,7 +12,7 @@ class BasicBall(Ball):
     def __init__(self, screen):
         self.screen = screen
         self.radius = 10
-        super(basicball, self).__init__(screen, self.radius)
+        super(BasicBall, self).__init__(screen, self.radius)
         # 被吃后增加权重
         self.weight = 1
         self.R = random.randint(50, 150)

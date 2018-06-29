@@ -45,8 +45,8 @@ class Buff(object):
         '''
         # 蛇的位置
         iseaten = False
-        if self.x > -30 and self.x < 30:
-            if self.y > 30 and self.y < 30:
+        if self.x > set.backgroundWidth//2-30 and self.x < set.backgroundWidth//2+30:
+            if self.y > set.backgroundHeight//2-30 and self.y < set.backgroundHeight//2+30:
                 iseaten = True
 
         # 返回判断结果

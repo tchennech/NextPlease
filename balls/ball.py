@@ -21,11 +21,10 @@ class Ball(object):
         pos: 是一个包含两个int值的list 例如[1,2]，表示球在屏幕位置，随机生成
         radius: 是
         '''
-        global set
         self.screen = screen
         self.radius = radius
-        self.pos = [random.randint(-set.BGWIDTH + self.radius, 2 * set.BGWIDTH - self.radius),\
-        random.randint(-set.BGHEIGHT + self.radius, 2 * set.BGHEIGHT - self.radius)]
+        self.pos = [random.randint(-Setting.backgroundWidth + self.radius, 2 * Setting.backgroundWidth - self.radius),\
+        random.randint(-Setting.backgroundHeight + self.radius, 2 * Setting.backgroundHeight - self.radius)]
     
     @abc.abstractmethod
     def blitme(self):
@@ -46,8 +45,8 @@ class Ball(object):
         判断小球是否被蛇吃掉
         '''
         iseaten = False
-        if self.pos[0] > -30 and self.pos[0] < 30:
-            if self.pos[1] > -30 and self.pos[1] < 30:
+        if self.pos[0] > Setting.backgroundWidth//2-30 and self.pos[0] < Setting.backgroundWidth//2+30:
+            if self.pos[1] > Setting.backgroundHeight//2-30 and self.pos[1] < Setting.backgroundHeight//2+30:
                 iseaten = True
 
         # 返回判断结果

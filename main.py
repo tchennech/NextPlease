@@ -4,6 +4,9 @@ from setting import *
 from mySnake import MySnake
 from enermy import OtherSnake
 from attribute import Attribute
+from balls.basicball import BasicBall
+from balls.shield import Shield
+
 # 全局变量
 enermylist = []
 #设置
@@ -22,15 +25,21 @@ limit = 2
 stops = 3
 stopTemp = -1
 finish = 4
+
 #按钮字
 leftWord, rightWord = '无尽模式', '限时模式'
 
 #控制界面按钮
 left, right = True, True
+
 #偏移
 leftX = set.backgroundWidth//2-20-set.imgWidth
 rightX = set.backgroundWidth//2+30
 height = set.backgroundHeight-90
+
+#食物
+normal = []
+special = []
 
 #分数
 score = 0
@@ -71,12 +80,26 @@ def collision():
         state = finish
     pass
 
+#初始化食物
+def initFood():
+    for i in range(20):
+        normal.append(BasicBall(screen))
+    for i in range(5):
+        special.append(Shield(screen, set.shieldImg, 5))
+#绘制食物
+def foodPaint():
+    for i in normal:
+        i.blitme(set.rx, set.ry)
+    for i in special:
+        i.blitme(set.rx, set.ry)
+
 # 绘制函数
 def paint():
     bgPaint()
     borderPaint()
     snake.paint()
     attr.paintattribute()
+    foodPaint()
     if state == limit:
         timePaint()
     for i in enermylist:
@@ -158,7 +181,13 @@ def stop():
     stopStr = ft.render("再次点击继续", True, (0, 0, 0))
     screen.blit(stopStr, (set.backgroundWidth // 2 - 105, set.backgroundHeight - 80))
 
-
+def isEaten():
+    for i in normal:
+        if i.isEaten():
+            normal.remove(i)
+    for i in special:
+        if i.isEaten():
+            special.remove(i)
 
 #初始界面
 def start():
@@ -196,8 +225,10 @@ def action():
                     if mouseY > height and mouseY < height + 47:
                         if mouseX < leftX + 200 and mouseX > leftX:
                             state = infinity
+                            initFood()
                         if mouseX > rightX and mouseX < rightX + 200:
                             state = limit
+                            initFood()
             elif state == finish:
                 argsInit()
                 state = starts
@@ -234,6 +265,7 @@ def main():
             collision()
             # 各物体对象坐标变化
             dynamic()
+            isEaten()
             paint()
             #延时
             #pygame.time.delay(15)
