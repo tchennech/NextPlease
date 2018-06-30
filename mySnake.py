@@ -51,10 +51,12 @@ class MySnake(Snake, set):
         for i in range(self.num):
             self.screen.blit(self.set.yellowCir, (self.bodyX[i], self.bodyY[i]))
 
-    def isHit(self,set):
+    def hitBorder(self,set):
         if self.bodyX[0] < set.backgroundPos[0][0] or self.bodyX[0] > set.backgroundPos[set.backgroundPages-1][0] \
             + set.BGWIDTH or self.bodyY[0] < set.backgroundPos[0][1] or \
             self.bodyY[0] > set.backgroundPos[set.backgroundPages-1][1]+set.BGHEIGHT:
             return True
         return False
+
+
 

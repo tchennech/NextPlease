@@ -69,3 +69,5 @@ class OtherSnake(Snake):
         for i in range(self.num):
             self.screen.blit(set.yellowCir, (self.bodyX[i], self.bodyY[i]))
             #print(self.bodyX[i],self.bodyY[i])
+
+
