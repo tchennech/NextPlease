@@ -241,6 +241,8 @@ def isEaten():
         if i.isEaten():
             normal.remove(i)
             score += 1
+            snake.add()
+            snake.num += 1
             attr.changestatue(score,life,shield)
     for i in special:
         if i.isEaten():
