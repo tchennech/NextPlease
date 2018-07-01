@@ -18,6 +18,8 @@ class OtherSnake(Snake):
         self.moveX = 2 * self.r * math.cos(math.radians(random.randint(-180, 180)))
         self.moveY = 2 * self.r * math.sin(math.radians(random.randint(-180, 180)))
         self.createBody()
+        color = [set.yellowCir, set.redCir, set.blueCir, set.greenCir]
+        self.color = color[random.randint(0,3)]
 
 
     def get_body(self):
@@ -67,7 +69,8 @@ class OtherSnake(Snake):
     # 绘制
     def paint(self):
         for i in range(self.num):
-            self.screen.blit(set.yellowCir, (self.bodyX[i], self.bodyY[i]))
+            j = random.randint(0,3)
+            self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
             #print(self.bodyX[i],self.bodyY[i])
 
 

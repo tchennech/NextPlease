@@ -16,10 +16,12 @@ class Setting:
     gameover = pygame.image.load('img/gameover.jpg')
 
     redCir = pygame.image.load("img/circle00.png")
-
+    blueCir = pygame.image.load("img/circle01.png")
+    yellowCir = pygame.image.load("img/circle02.png")
+    greenCir = pygame.image.load("img/circle03.png")
     shieldImg = "img/shield.png"
 
-    yellowCir = pygame.image.load("img/circle02.png")
+
 
     # 分数栏
     titleImage = pygame.image.load('img/title.png')

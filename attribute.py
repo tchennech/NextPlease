@@ -14,7 +14,7 @@ class Attribute:
     # life: +1 加一条生命  -1 减一条生命  shield: true 有盾  false 无盾
     def changestatue(self, score, life, shield):
         self.score = score
-        self.life += life
+        self.life = life
         self.shield = shield
 
     def paintattribute(self):

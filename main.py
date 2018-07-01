@@ -47,7 +47,11 @@ score = 0
 # 时间
 timeIndex = 50
 
+#生命
+life = 1
 
+#d盾牌
+shield = 0
 # 函数
 
 # 初始化各个参数，  添加图片到内存中
@@ -211,7 +215,10 @@ def finishs():
 
 # 游戏结束后参数重置
 def argsInit():
-    global state, starts, snake, set, enermylist
+    global state, starts, snake, set, enermylist,score,life,shield
+    life = 1
+    shield = 0
+    score = 0
     state = starts
     set.setInit()
     snake = MySnake(screen, set)
@@ -229,9 +236,12 @@ def stop():
 
 
 def isEaten():
+    global score,attr,life,shield
     for i in normal:
         if i.isEaten():
             normal.remove(i)
+            score += 1
+            attr.changestatue(score,life,shield)
     for i in special:
         if i.isEaten():
             special.remove(i)
