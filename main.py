@@ -163,24 +163,12 @@ def timePaint():
 # 绘制背景
 def bgPaint():
     global set
-    i = 0
-    '''
     for x, y in set.backgroundPos:
-        tempImg = pygame.image.load(set.background[i])
-        screen.blit(pygame.transform.scale(tempImg,(set.BGWIDTH,set.BGHEIGHT)), (x,y))
-        i+=1
-    '''
-    for x, y in set.backgroundPos:
-        screen.blit(pygame.transform.scale(Setting.backgroundStore[i], (set.BGWIDTH, set.BGHEIGHT)), (x, y))
+        screen.blit(pygame.transform.scale(Setting.backgroundStore[0], (set.BGWIDTH, set.BGHEIGHT)), (x, y))
 
 
 def borderPaint():
     global set
-    '''
-    for x, y in set.borderPos:
-        tempImg = pygame.image.load('img/border.jpg')
-        screen.blit(pygame.transform.scale(tempImg, (set.BGWIDTH, set.BGHEIGHT)), (x, y))
-    '''
     for x, y in set.borderPos:
         screen.blit(pygame.transform.scale(Setting.borderImg, (set.BGWIDTH, set.BGHEIGHT)), (x, y))
 
@@ -190,9 +178,12 @@ def dynamic():
     global set, state
     set.rx, set.ry = snake.moveaction()
     backgroundmove()
+
+    # 无敌变色
+    snake.wudi_paint()
     for i in enermylist:
         i.moveaction(set)
-
+        i.wudi_paint()
 
 # 背景(含边界黑幕)移动
 def backgroundmove():

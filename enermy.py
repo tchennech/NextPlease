@@ -18,8 +18,8 @@ class OtherSnake(Snake):
         self.moveX = 2 * self.r * math.cos(math.radians(random.randint(-180, 180)))
         self.moveY = 2 * self.r * math.sin(math.radians(random.randint(-180, 180)))
         self.createBody()
-        color = [set.yellowCir, set.redCir, set.blueCir, set.greenCir]
-        self.color = color[random.randint(0,3)]
+        #color = [set.yellowCir, set.redCir, set.blueCir, set.greenCir]
+        #self.color = color[random.randint(0,3)]
 
 
     def get_body(self):

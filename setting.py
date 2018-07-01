@@ -31,7 +31,6 @@ class Setting:
         self.__init__()
 
     def __init__(self):
-        self.background = []
         self.backgroundPages = 9
         # 窗口大小
         #self.BGWIDTH = self.cover.get_rect()[2]
@@ -56,9 +55,9 @@ class Setting:
             [self.BGWIDTH * 2, -self.BGHEIGHT * 2], [self.BGWIDTH * 2, -self.BGWIDTH], [self.BGWIDTH * 2, 0],
             [self.BGWIDTH * 2, self.BGHEIGHT], [self.BGWIDTH * 2, self.BGHEIGHT * 2]]
 
-        for i in range(1, self.backgroundPages + 1):
-            self.background.append('img/grids' + str(i) + '.jpg')
-            Setting.backgroundStore.append(pygame.image.load('img/grids' + str(i) + '.jpg'))
+        Setting.backgroundStore.append(pygame.image.load('img/background.png'))
+        #for i in range(1, self.backgroundPages + 1):
+         #   Setting.backgroundStore.append(pygame.image.load('img/grids' + str(i) + '.jpg'))
 
 
 clock = pygame.time.Clock()

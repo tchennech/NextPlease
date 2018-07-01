@@ -49,18 +49,15 @@ class MySnake(Snake, set):
         # self.moveaction()
         pygame.time.delay(self.delaytime)
         for i in range(self.num):
-            self.screen.blit(self.set.yellowCir, (self.bodyX[i], self.bodyY[i]))
+           # self.screen.blit(self.set.yellowCir, (self.bodyX[i], self.bodyY[i]))
+            self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
 
     #增加蛇长
     def add(self):
         self.bodyX.append(self.bodyX[self.num-1])
         self.bodyY.append(self.bodyY[self.num-1])
 
-    #无敌闪烁模式
-    def wudi_paint(self):
-        for i in range(self.num):
-            color = color[random.randint(0,3)]
-            self.screen.blit(color, (self.bodyX[i], self.bodyY[i]))
+
 
     def hitBorder(self,set):
         if self.bodyX[0] < set.backgroundPos[0][0] or self.bodyX[0] > set.backgroundPos[set.backgroundPages-1][0] \

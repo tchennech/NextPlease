@@ -1,5 +1,6 @@
 import math,random
 import abc
+from setting import Setting
 class Snake:
     def __init__(self,screen):
         self.screen = screen
@@ -9,7 +10,9 @@ class Snake:
         self.bodyY = []
         self.r = 10
         self.power = 2
-        self.invincibleTime = 20 # 无敌时间
+        self.invincibleTime = 40 # 无敌时间
+        color = [Setting.yellowCir, Setting.redCir, Setting.blueCir, Setting.greenCir]
+        self.color = color[random.randint(0,3)]
     def createBody(self):
         for i in range(1, self.num):
             self.bodyX.append(self.bodyX[i - 1] + int(2 * self.r * math.cos(random.randint(0, 45))))
@@ -64,6 +67,15 @@ class Snake:
     def decreInvincibleTime(self):
         if self.invincibleTime!=0:
             self.invincibleTime-=1
+
+    # 无敌闪烁模式
+    def wudi_paint(self):
+        if self.invincibleTime > 0:
+            color = [Setting.yellowCir, Setting.redCir, Setting.blueCir, Setting.greenCir]
+            for i in range(self.num):
+                self.color = color[random.randint(0, 3)]
+                self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
+
 
     # 自身死亡后效果
     def dead(self):
