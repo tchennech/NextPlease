@@ -6,7 +6,7 @@ class MySnake(Snake, set):
     step = 1
 
     # 延时时间
-    delaytime = 10
+    delaytime = 20
     delayFlag = 1
 
     def __init__(self, screen, set):
@@ -14,7 +14,7 @@ class MySnake(Snake, set):
         self.set = set
         self.bodyX.append(set.originX)
         self.bodyY.append(set.originY)
-        self.power = 1.5
+        self.power = 1.4
         self.createBody()
 
     def get_body(self):

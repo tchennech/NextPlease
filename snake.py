@@ -9,7 +9,7 @@ class Snake:
         self.bodyX = []
         self.bodyY = []
         self.r = 10
-        self.power = 2
+        self.power = 1.5
         self.invincibleTime = 40 # 无敌时间
         self.life = 1
         color = [Setting.yellowCir, Setting.redCir, Setting.blueCir, Setting.greenCir]
@@ -66,6 +66,7 @@ class Snake:
             if self.isHit(tempX, tempY):
                 self.life-=1
                 self.dead()
+                self.invincibleTime += 40
                 if self.life == 0:
                     return True
         return False
@@ -98,4 +99,4 @@ class Snake:
 
 
     def hasShield(self):
-        self.invincibleTime += 20
+        self.invincibleTime += 80

@@ -74,7 +74,7 @@ def initGame():
 # 进行倒计时
 def CountClock():
     global timeIndex, state
-    timeIndex -= 0.1
+    timeIndex -= 0.05
     if math.ceil(timeIndex)==0:
         state = finish
 
@@ -277,11 +277,10 @@ def isEaten():
                 attr.life += 1
                 snake.life += 1
             elif isinstance(i, BigBall):
-                score += 5
-                snake.add()
-                snake.add()
-                snake.add()
-                snake.num += 3
+                score += 10
+                for j in range(10):
+                    snake.add()
+                snake.num += 10
                 attr.changestatue(score, snake.life, shield)
 
 
