@@ -6,6 +6,7 @@ from enermy import OtherSnake
 from attribute import Attribute
 from balls.basicball import BasicBall
 from balls.shield import Shield
+import math
 
 # 全局变量
 enermylist = []
@@ -45,7 +46,7 @@ special = []
 score = 0
 
 # 时间
-timeIndex = 50
+timeIndex = 60
 
 #生命
 life = 1
@@ -69,10 +70,10 @@ def initGame():
 
 def CountClock():
     global timeIndex, state
-    timeIndex -= 1
+    timeIndex -= 0.1
     if timeIndex == 0:
         state = finish
-        timeIndex = 50
+        timeIndex = 60
 
 
 # 键盘监听
@@ -156,7 +157,7 @@ def paint():
 def timePaint():
     pygame.font.init()
     ft = pygame.font.Font('font/fonts.ttf', 25)
-    timeStr = ft.render('倒计时：%d' % timeIndex, True, (75, 200, 200))
+    timeStr = ft.render('倒计时：%d s' % math.ceil(timeIndex), True, (75, 200, 200))
     screen.blit(timeStr, (30, 20))
 
 
