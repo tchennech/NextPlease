@@ -1,4 +1,4 @@
-import pygame, random, sys
+import random, sys
 from pygame.locals import *
 from setting import *
 from mySnake import MySnake
@@ -88,7 +88,7 @@ def keyListen(event):
 
 # 碰撞函数
 def collision():
-    global set, snake, state, finish
+    global snake, state, finish
     # 判断蛇是否碰到边界
     if snake.hitBorder(set):
         state = finish
