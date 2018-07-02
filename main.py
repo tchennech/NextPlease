@@ -11,8 +11,7 @@ import math
 from balls.bigball import BigBall
 # 全局变量
 enermylist = []
-# 设置
-set = Setting()
+
 # 屏幕
 screen = pygame.display.set_mode((set.backgroundWidth, set.backgroundHeight), 0, 32)
 # 初始化蛇
@@ -66,6 +65,9 @@ def initGame():
     pygame.key.set_repeat(20, 5)
     # 音效 初始化
     pygame.mixer.init()
+    pygame.mixer.music.load('bgm/7895.wav')
+    pygame.mixer.music.play(-1, 0.0)
+
     # 初始化 敌人
     for i in range(5):
         enermylist.append(OtherSnake(screen))

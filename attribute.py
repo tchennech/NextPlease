@@ -26,9 +26,6 @@ class Attribute:
         self.screen.blit(set.titleImage, \
                          (set.backgroundWidth - set.titleImage.get_rect()[2] - 30, \
                           set.titleImage.get_rect()[3]*2 + 20))
-        self.screen.blit(set.titleImage, \
-                         (set.backgroundWidth - set.titleImage.get_rect()[2] - 30, \
-                          set.titleImage.get_rect()[3]*3 + 20))
 
         pygame.font.init()
         ft = pygame.font.Font('font/butter.ttf', 25)
@@ -41,13 +38,4 @@ class Attribute:
         # 生命
         lifeStr = ft.render("生 命： %d" % self.life, True, (124, 150, 112))
         self.screen.blit(lifeStr, (set.backgroundWidth - set.titleImage.get_rect()[2] - 15, 115))
-        # BUFF
-        s = ""
-        if self.shield:
-            s += "盾牌"
-        else:
-            s += "无"
-        shieldStr = ft.render("BUFF： %s" % s, True, (124, 150, 112))
-        self.screen.blit(shieldStr, (set.backgroundWidth - set.titleImage.get_rect()[2] - 15, 155))
-
 
