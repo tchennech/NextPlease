@@ -8,7 +8,7 @@ from balls.basicball import BasicBall
 from balls.shield import Shield
 from balls.heart import Heart
 import math
-
+from balls.bigball import BigBall
 # 全局变量
 enermylist = []
 # 设置
@@ -49,8 +49,6 @@ score = 0
 # 时间
 timeIndex = 30
 
-#生命
-life = 1
 
 #盾牌
 shield = 0
@@ -132,15 +130,23 @@ def collision():
 
 # 初始化食物
 def initFood():
+    #设置边界
     x = [set.backgroundPos[0][0] + 50, set.backgroundPos[6][0]+set.BGWIDTH-50]
     y = [set.backgroundPos[0][1] + 50, set.backgroundPos[2][1]+set.BGHEIGHT-50]
-    for i in range(20):
-        normal.append(BasicBall(screen, x, y))
-    for i in range(5):
-        special.append(Shield(screen, set.shieldImg, 5, x, y))
-    for i in range(3):
-        special.append(Heart(screen, set.heartImg, 5, x, y))
 
+    #普通食物
+    for i in range(20-len(normal)):
+        normal.append(BasicBall(screen, x, y))
+
+    #特殊道具
+    for i in range(8-len(special)):
+        randomNum = random.randint(0,2)
+        if randomNum == 0:
+            special.append(Shield(screen, set.shieldImg, 5, x, y))
+        elif randomNum == 1:
+            special.append(Heart(screen, set.heartImg, 5, x, y))
+        else:
+            special.append(BigBall(screen, x, y))
 
 # 绘制食物
 def foodPaint():
@@ -152,16 +158,17 @@ def foodPaint():
 
 # 绘制函数
 def paint():
+    global attr
     bgPaint()
     borderPaint()
     snake.paint()
+    attr.life = snake.life
     attr.paintattribute()
     foodPaint()
     if state == limit:
         timePaint()
     for i in enermylist:
         i.paint()
-
 
 # 绘制计时器
 def timePaint():
@@ -181,6 +188,7 @@ def timePaint():
     screen.blit(ft_time.render('倒计时：', True, (50, 65, 80)), (30, 20))
     screen.blit(ClockImg, (42, 35))
     screen.blit(timeStr, (42, 80))
+
 
 
 # 绘制背景
@@ -218,7 +226,7 @@ def backgroundmove():
         set.borderPos[i][0] -= set.rx
         set.borderPos[i][1] -= set.ry
 
-
+#结束状态
 def finishs():
     screen.blit(set.gameover, (0, 0))
     pygame.font.init()
@@ -229,8 +237,7 @@ def finishs():
 
 # 游戏结束后参数重置
 def argsInit():
-    global state, starts, snake, set, enermylist, score, life, shield, attr, normal, special, timeIndex
-    life = 1
+    global state, starts, snake, set, enermylist, score, shield, attr, normal, special, timeIndex
     shield = 0
     score = 0
     state = starts
@@ -244,7 +251,7 @@ def argsInit():
     for i in range(5):
         enermylist.append(OtherSnake(screen))
 
-
+#暂停状态
 def stop():
     screen.blit(set.cover, (0, 0))
     pygame.font.init()
@@ -252,23 +259,31 @@ def stop():
     stopStr = ft.render("再次点击继续", True, (0, 0, 0))
     screen.blit(stopStr, (set.backgroundWidth // 2 - 105, set.backgroundHeight - 80))
 
-
+#食物或道具被吃
 def isEaten():
-    global score,attr,life,shield,snake
+    global score,attr,shield,snake
     for i in normal:
         if i.isEaten():
             normal.remove(i)
             score += 1
             snake.add()
             snake.num += 1
-            attr.changestatue(score,life,shield)
+            attr.changestatue(score, snake.life,shield)
     for i in special:
         if i.isEaten():
             if isinstance(i, Shield):
                 snake.hasShield()
             elif isinstance(i, Heart):
-                life += 1
-                #snake.life += 1
+                attr.life += 1
+                snake.life += 1
+            elif isinstance(i, BigBall):
+                score += 5
+                snake.add()
+                snake.add()
+                snake.add()
+                snake.num += 3
+                attr.changestatue(score, snake.life, shield)
+
 
             special.remove(i)
 
@@ -350,7 +365,7 @@ def main():
             collision()
             # 各物体对象坐标变化
             dynamic()
-
+            initFood()
             paint()
             # 延时
             # pygame.time.delay(15)

@@ -11,6 +11,7 @@ class Snake:
         self.r = 10
         self.power = 2
         self.invincibleTime = 40 # 无敌时间
+        self.life = 1
         color = [Setting.yellowCir, Setting.redCir, Setting.blueCir, Setting.greenCir]
         temp = random.randint(0, 3)
         HeadColor = [Setting.yellowCirHead, Setting.redCirHead, Setting.blueCirHead, Setting.greenCirHead]
@@ -63,8 +64,10 @@ class Snake:
             tempX = other.bodyX[i]
             tempY = other.bodyY[i]
             if self.isHit(tempX, tempY):
+                self.life-=1
                 self.dead()
-                return True
+                if self.life == 0:
+                    return True
         return False
 
     # 无敌时间削减
@@ -90,7 +93,8 @@ class Snake:
 
     # 自身死亡后效果
     def dead(self):
-        print('i was dead')
+        if self.life == 0:
+            print('i was dead')
 
 
     def hasShield(self):

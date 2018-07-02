@@ -6,13 +6,15 @@ class MySnake(Snake, set):
     step = 1
 
     # 延时时间
-    delaytime = 0
+    delaytime = 10
+    delayFlag = 1
 
     def __init__(self, screen, set):
         super().__init__(screen)
         self.set = set
         self.bodyX.append(set.originX)
         self.bodyY.append(set.originY)
+        self.power = 1.5
         self.createBody()
 
     def get_body(self):
@@ -20,7 +22,7 @@ class MySnake(Snake, set):
 
     # 加速功能，代填补
     def accelerate(self):
-        self.delaytime += 10
+        self.delaytime = 0
         pass
 
     # 转向功能
@@ -33,7 +35,13 @@ class MySnake(Snake, set):
                 self.degree += 10
 
             if event.key == K_SPACE:
-                self.accelerate()
+                if self.delayFlag == 1:
+                    self.accelerate()
+                    self.delayFlag = 0
+                if self.delayFlag == 0:
+                    self.delaytime = 1000
+                    self.delayFlag = 1
+
 
     # 移动
     def moveaction(self):

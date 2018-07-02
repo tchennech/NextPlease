@@ -1,16 +1,15 @@
-from ball import Ball
-NameError
-
-set = Setting()
+from balls.ball import Ball
+from setting import *
+import random
 
 class BigBall(Ball):
     '''
     大球，对与基本小球被吃后，增益加倍
     '''
-    def __init__(self, screen):
+    def __init__(self, screen, x, y):
         self.screen = screen
-        self.radius = 15
-        super(BigBall, self).__init__(screen, self.radius)
+        self.radius = 20
+        super(BigBall, self).__init__(screen, self.radius, x, y)
         # 被吃后增加权重
         self.weight = 2
         self.R = random.randint(50, 150)
