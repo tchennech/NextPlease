@@ -64,5 +64,5 @@ class Setting:
         #for i in range(1, self.backgroundPages + 1):
          #   Setting.backgroundStore.append(pygame.image.load('img/grids' + str(i) + '.jpg'))
 
-
+set = Setting()
 clock = pygame.time.Clock()

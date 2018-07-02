@@ -9,10 +9,10 @@ class BasicBall(Ball):
     '''
     基本小球，没有特殊属性，被吃后蛇长度以及分数增加1
     '''
-    def __init__(self, screen):
+    def __init__(self, screen, x, y):
         self.screen = screen
         self.radius = 10
-        super(BasicBall, self).__init__(screen, self.radius)
+        super(BasicBall, self).__init__(screen, self.radius, x, y)
         # 被吃后增加权重
         self.weight = 1
         self.R = random.randint(50, 150)

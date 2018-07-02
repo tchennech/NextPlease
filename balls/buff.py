@@ -9,10 +9,10 @@ set = Setting()
 
 class Buff(object):
     '''初始化'''
-    def __init__(self, screen, image, radius):
+    def __init__(self, screen, image, radius, x, y):
         self.screen = screen
-        self.x = random.randint(-480, 800)
-        self.y = random.randint(-480, 800)
+        self.x = random.randint(x[0], x[1])
+        self.y = random.randint(y[0], y[1])
         self.image = image
         self.width = image.get_rect()[2]
         self.height = image.get_rect()[3]

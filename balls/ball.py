@@ -1,6 +1,6 @@
 import abc
 import random
-from setting import Setting
+from setting import *
 
 class Ball(object):
     '''
@@ -10,9 +10,7 @@ class Ball(object):
     DOUBLEWFUC = 2
     BUFFER = 3
 
-    set = Setting()
-
-    def __init__(self, screen, radius):
+    def __init__(self, screen, radius, x, y):
         '''
         初始化基类球 
         Args:
@@ -23,8 +21,8 @@ class Ball(object):
         '''
         self.screen = screen
         self.radius = radius
-        self.pos = [random.randint(-Setting.backgroundWidth + self.radius, 2 * Setting.backgroundWidth - self.radius),\
-        random.randint(-Setting.backgroundHeight + self.radius, 2 * Setting.backgroundHeight - self.radius)]
+        self.pos = [random.randint(x[0], x[1]),\
+        random.randint(y[0], y[1])]
     
     @abc.abstractmethod
     def blitme(self):

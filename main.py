@@ -132,12 +132,14 @@ def collision():
 
 # 初始化食物
 def initFood():
+    x = [set.backgroundPos[0][0] + 50, set.backgroundPos[6][0]+set.BGWIDTH-50]
+    y = [set.backgroundPos[0][1] + 50, set.backgroundPos[2][1]+set.BGHEIGHT-50]
     for i in range(20):
-        normal.append(BasicBall(screen))
+        normal.append(BasicBall(screen, x, y))
     for i in range(5):
-        special.append(Shield(screen, set.shieldImg, 5))
+        special.append(Shield(screen, set.shieldImg, 5, x, y))
     for i in range(3):
-        special.append(Heart(screen, set.heartImg, 5))
+        special.append(Heart(screen, set.heartImg, 5, x, y))
 
 
 # 绘制食物
@@ -209,17 +211,20 @@ def finishs():
     pygame.font.init()
     ft = pygame.font.Font('font/fonts.ttf', 30)
     stopStr = ft.render(str(score), True, (0, 0, 0))
-    screen.blit(stopStr, (set.backgroundWidth - 105, 60))
+    screen.blit(stopStr, (set.backgroundWidth - 105, 65))
 
 
 # 游戏结束后参数重置
 def argsInit():
-    global state, starts, snake, set, enermylist,score,life,shield
+    global state, starts, snake, set, enermylist, score, life, shield, attr, normal, special
     life = 1
     shield = 0
     score = 0
     state = starts
     set.setInit()
+    attr = Attribute(screen)
+    normal = []
+    special = []
     snake = MySnake(screen, set)
     enermylist.clear()
     for i in range(5):
@@ -249,6 +254,7 @@ def isEaten():
                 snake.hasShield()
             elif isinstance(i, Heart):
                 life += 1
+                #snake.life += 1
 
             special.remove(i)
 
