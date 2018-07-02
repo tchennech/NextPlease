@@ -31,6 +31,12 @@ class Setting:
     # 分数栏
     titleImage = pygame.image.load('img/title.png')
 
+    #时钟图标
+    ClockImg = ["img/clock41.png",
+                "img/clock21.png",
+                "img/clock21.png",
+                "img/clock11.png"]
+
     # 参数重置
     def setInit(self):
         self.__init__()

@@ -47,7 +47,7 @@ special = []
 score = 0
 
 # 时间
-timeIndex = 60
+timeIndex = 30
 
 #生命
 life = 1
@@ -73,12 +73,12 @@ def initGame():
         enermylist.append(OtherSnake(screen))
 
 
+# 进行倒计时
 def CountClock():
     global timeIndex, state
     timeIndex -= 0.1
-    if timeIndex == 0:
+    if math.ceil(timeIndex)==0:
         state = finish
-        timeIndex = 60
 
 
 # 键盘监听
@@ -163,11 +163,24 @@ def paint():
         i.paint()
 
 
+# 绘制计时器
 def timePaint():
     pygame.font.init()
-    ft = pygame.font.Font('font/fonts.ttf', 25)
-    timeStr = ft.render('倒计时：%d s' % math.ceil(timeIndex), True, (75, 200, 200))
-    screen.blit(timeStr, (30, 20))
+    fontSize = 20
+    colorAttr = (50, 65, 80)
+    if timeIndex < 10:
+        colorAttr = (250, 0, 0)
+        fontSize = 35
+
+    ft_word = pygame.font.Font('font/fonts.ttf', 20)
+    ft_time = pygame.font.Font('font/fonts.ttf', fontSize)
+
+    timeStr = ft_word.render('%d'% math.ceil(timeIndex), True, colorAttr)
+    imgIndex = int(timeIndex/8)
+    ClockImg = pygame.image.load(set.ClockImg[imgIndex])
+    screen.blit(ft_time.render('倒计时：', True, (50, 65, 80)), (30, 20))
+    screen.blit(ClockImg, (42, 35))
+    screen.blit(timeStr, (42, 80))
 
 
 # 绘制背景
@@ -216,11 +229,12 @@ def finishs():
 
 # 游戏结束后参数重置
 def argsInit():
-    global state, starts, snake, set, enermylist, score, life, shield, attr, normal, special
+    global state, starts, snake, set, enermylist, score, life, shield, attr, normal, special, timeIndex
     life = 1
     shield = 0
     score = 0
     state = starts
+    timeIndex = 30
     set.setInit()
     attr = Attribute(screen)
     normal = []
