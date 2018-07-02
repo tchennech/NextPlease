@@ -1,28 +1,25 @@
-from balls.ball import Ball
-import pygame
-import random
-from setting import Setting
+from ball import Ball
+NameError
 
 set = Setting()
 
-class BasicBall(Ball):
+class BigBall(Ball):
     '''
-    基本小球，没有特殊属性，被吃后蛇长度以及分数增加1
+    大球，对与基本小球被吃后，增益加倍
     '''
     def __init__(self, screen):
         self.screen = screen
-        self.radius = 10
-        super(BasicBall, self).__init__(screen, self.radius)
+        self.radius = 15
+        super(BigBall, self).__init__(screen, self.radius)
         # 被吃后增加权重
-        self.weight = 1
+        self.weight = 2
         self.R = random.randint(50, 150)
         self.G = random.randint(50, 150)
         self.B = random.randint(50, 150)
-        
 
     def blitme(self, x, y):
         '''
-        绘制自己，最基本的小球，圆形，随机颜色，填充
+        绘制自己，大球，圆形，随机颜色，填充，半径大于基本小球
         '''
         self.pos[0] -= x
         self.pos[1] -= y
@@ -35,4 +32,4 @@ class BasicBall(Ball):
         Return:
                返回效果值
         '''
-        return Ball.BASIC
+        return Ball.DOUBLEWFUC

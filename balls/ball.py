@@ -34,7 +34,7 @@ class Ball(object):
 
 
     @abc.abstractmethod
-    def byEat(self):
+    def byEaten(self):
         '''
         被吃之后的效果
         '''
