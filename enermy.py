@@ -70,7 +70,11 @@ class OtherSnake(Snake):
     def paint(self):
         for i in range(self.num):
             j = random.randint(0,3)
-            self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
+            if i == 0:
+                snakeheadrotate = pygame.transform.rotate(self.HeadColor, 360 - self.degree)
+                self.screen.blit(snakeheadrotate, (self.bodyX[i], self.bodyY[i]))
+            else:
+                self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
             #print(self.bodyX[i],self.bodyY[i])
 
 
