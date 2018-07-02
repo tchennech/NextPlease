@@ -80,3 +80,7 @@ class Snake:
     # 自身死亡后效果
     def dead(self):
         print('i was dead')
+
+
+    def hasShield(self):
+        self.invincibleTime += 20

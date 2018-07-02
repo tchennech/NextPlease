@@ -6,6 +6,7 @@ from enermy import OtherSnake
 from attribute import Attribute
 from balls.basicball import BasicBall
 from balls.shield import Shield
+from balls.heart import Heart
 
 # 全局变量
 enermylist = []
@@ -50,8 +51,12 @@ timeIndex = 50
 #生命
 life = 1
 
-#d盾牌
+#盾牌
 shield = 0
+
+#爱心
+heart = 0
+
 # 函数
 
 # 初始化各个参数，  添加图片到内存中
@@ -130,6 +135,8 @@ def initFood():
         normal.append(BasicBall(screen))
     for i in range(5):
         special.append(Shield(screen, set.shieldImg, 5))
+    for i in range(3):
+        special.append(Heart(screen, set.heartImg, 5))
 
 
 # 绘制食物
@@ -227,7 +234,7 @@ def stop():
 
 
 def isEaten():
-    global score,attr,life,shield
+    global score,attr,life,shield,snake
     for i in normal:
         if i.isEaten():
             normal.remove(i)
@@ -237,7 +244,13 @@ def isEaten():
             attr.changestatue(score,life,shield)
     for i in special:
         if i.isEaten():
+            if isinstance(i, Shield):
+                snake.hasShield()
+            elif isinstance(i, Heart):
+                life += 1
+
             special.remove(i)
+
 
 
 # 初始界面

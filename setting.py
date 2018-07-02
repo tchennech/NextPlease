@@ -20,6 +20,7 @@ class Setting:
     yellowCir = pygame.image.load("img/circle02.png")
     greenCir = pygame.image.load("img/circle03.png")
     shieldImg = "img/shield.png"
+    heartImg = "img/heart.png"
 
 
 
