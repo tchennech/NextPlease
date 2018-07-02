@@ -22,7 +22,11 @@ class Setting:
     shieldImg = "img/shield.png"
     heartImg = "img/heart.png"
 
-
+    # 蛇的脑袋
+    redCirHead = pygame.image.load("img/head00.png")
+    blueCirHead = pygame.image.load("img/head01.png")
+    yellowCirHead = pygame.image.load("img/head02.png")
+    greenCirHead = pygame.image.load("img/head03.png")
 
     # 分数栏
     titleImage = pygame.image.load('img/title.png')

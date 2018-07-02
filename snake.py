@@ -1,4 +1,4 @@
-import math,random
+import math,random, pygame
 import abc
 from setting import Setting
 class Snake:
@@ -12,7 +12,11 @@ class Snake:
         self.power = 2
         self.invincibleTime = 40 # 无敌时间
         color = [Setting.yellowCir, Setting.redCir, Setting.blueCir, Setting.greenCir]
-        self.color = color[random.randint(0,3)]
+        temp = random.randint(0, 3)
+        HeadColor = [Setting.yellowCirHead, Setting.redCirHead, Setting.blueCirHead, Setting.greenCirHead]
+        self.color = color[temp]
+        self.HeadColor = HeadColor[temp]
+
     def createBody(self):
         for i in range(1, self.num):
             self.bodyX.append(self.bodyX[i - 1] + int(2 * self.r * math.cos(random.randint(0, 45))))
@@ -72,9 +76,16 @@ class Snake:
     def wudi_paint(self):
         if self.invincibleTime > 0:
             color = [Setting.yellowCir, Setting.redCir, Setting.blueCir, Setting.greenCir]
+            HeadColor = [Setting.yellowCirHead, Setting.redCirHead, Setting.blueCirHead, Setting.greenCirHead]
             for i in range(self.num):
-                self.color = color[random.randint(0, 3)]
-                self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
+                colortemp = random.randint(0, 3)
+                self.color = color[colortemp]
+                self.HeadColor = HeadColor[colortemp]
+                if i == 0:
+                    snakeheadrotate = pygame.transform.rotate(self.HeadColor, 360 - self.degree)
+                    self.screen.blit(snakeheadrotate, (self.bodyX[i], self.bodyY[i]))
+                else:
+                    self.screen.blit(self.color, (self.bodyX[i], self.bodyY[i]))
 
 
     # 自身死亡后效果
